@@ -3,7 +3,7 @@ module ActiveDevice::ControllerMethods
   include ActiveDevice::Helper
 
   def self.included(base)
-    base.before_filter :set_mobile_format
+    base.before_action :set_mobile_format
     base.helper_method :is_mobile_device?, :is_mobile_browser?, :is_desktop_browser?, :is_bot?
     base.helper_method :is_mobile_view?
     base.helper_method :is_device?, :is_handset?, :is_brand?, :is_model?, :is_os?, :is_engine?, :is_browser?
