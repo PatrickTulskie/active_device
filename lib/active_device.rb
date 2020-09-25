@@ -36,5 +36,14 @@ require 'active_device/engine'
 require 'active_device/browser'
 require 'active_device/os'
 
-ActionController::Base.send :include, ActiveDevice::ControllerMethods
-ActionView::Base.send :include, ActiveDevice::Helper
+if Rails::VERSION::MAJOR >= 5
+  ActiveSupport.on_load :action_controller do
+    include ActiveDevice::ControllerMethods
+  end
+  ActiveSupport.on_load :action_view do
+    include ActiveDevice::Helper
+  end
+else
+  ActionController::Base.send :include, ActiveDevice::ControllerMethods
+  ActionView::Base.send :include, ActiveDevice::Helper
+end
